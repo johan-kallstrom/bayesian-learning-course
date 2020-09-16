@@ -1,1 +1,0 @@
-# Implementation of the Thompson sampling algorithm
