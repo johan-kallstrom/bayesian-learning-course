@@ -7,11 +7,11 @@ class BernoulliBandit:
     def __init__(self, probs):
         self.probs = probs
         self.n_arms = len(probs)
-        self.rng = np.random.default_rng()
+        # self.rng = np.random.default_rng()
 
     def draw(self, arm):
         assert arm < self.n_arms, "Arm outside range: %d" % self.n_arms
-        reward = self.rng.binomial(n=1, p=self.probs[arm])
+        reward = np.random.binomial(n=1, p=self.probs[arm])
         expected_regret = np.max(self.probs) - self.probs[arm]
         return reward, expected_regret
 

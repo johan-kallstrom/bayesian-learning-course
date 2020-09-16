@@ -11,7 +11,7 @@ class BayesUcb:
         self.n_arms = len(priors)
         self.warmup_arm = 0
         self.time_step = 0
-        self.rng = np.random.default_rng()
+        # self.rng = np.random.default_rng()
 
     def select_arm(self):
         if self.warmup_arm < self.n_arms:

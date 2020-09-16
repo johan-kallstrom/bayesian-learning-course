@@ -22,8 +22,8 @@ class Ucb:
                 ucb_estimates[i] = self.rewards[i] / self.n_slected[i] + ucb_term
             arm = np.argmax(ucb_estimates)
         self.time_step += 1
-        self.n_slected[arm] += 1
         return arm
 
     def learn(self, arm, reward):
+        self.n_slected[arm] += 1
         self.rewards[arm] += reward        
