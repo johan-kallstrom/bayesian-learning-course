@@ -3,6 +3,7 @@
 from bayesian_learning.bandits import BernoulliBandit
 from bayesian_learning.thompson_sampling import ThompsonSampling
 from bayesian_learning.ucb import Ucb
+from bayesian_learning.bayes_ucb import BayesUcb
 
 import numpy as np
 
@@ -19,9 +20,9 @@ uninformed_priors = [np.array([1.0, 1.0]),
                      np.array([1.0, 1.0]),
                      np.array([1.0, 1.0])]
 
-informed_priors = [np.array([8.0, 2.0]), # easy
-                   np.array([5.0, 5.0]), # medium
-                   np.array([2.0, 8.0])] # hard
+informed_priors = [np.array([5.0, 5.0]), # easy
+                   np.array([2.0, 8.0]), # medium
+                   np.array([1.0, 10.0])] # hard
 
 # Players
 players = []
@@ -31,6 +32,12 @@ players.append(thompson_sampler)
 
 ucb = Ucb(n_arms=3)
 players.append(ucb)
+
+bayes_ucb = BayesUcb(priors=uninformed_priors)
+players.append(bayes_ucb)
+
+thompson_sampler = ThompsonSampling(priors=informed_priors)
+players.append(thompson_sampler)
 
 # Run the experiment
 n_players = len(players)
@@ -51,6 +58,8 @@ for draw in range(n_draws):
         cumulative_regret[:,i] += expected_regret
         cumulative_regret_history[draw, i] = cumulative_regret[:,i]
 
-plt.plot(cumulative_regret_history[:,0])
-plt.plot(cumulative_regret_history[:,1])
+colors = []
+for i in range(n_players):
+    plt.plot(cumulative_regret_history[:,i])
+    plt.plot(cumulative_regret_history[:,i])
 plt.show()

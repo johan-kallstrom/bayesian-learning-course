@@ -2,6 +2,8 @@
 
 import numpy as np
 
+from scipy.stats import beta
+
 class ThompsonSampling:
 
     def __init__(self, priors):
@@ -28,4 +30,3 @@ class ThompsonSampling:
 
     def plot_posteriors(self, save_to_file=False):
         pass
-        
