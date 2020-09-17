@@ -6,10 +6,7 @@ class Ucb:
 
     def __init__(self, n_arms):
         self.n_arms = n_arms
-        self.warmup_arm = 0
-        self.time_step = 0
-        self.rewards = np.zeros(shape=(n_arms,))
-        self.n_slected = np.zeros(shape=(n_arms,))
+        self.reset()
 
     def select_arm(self):
         if self.warmup_arm < self.n_arms:
@@ -26,4 +23,10 @@ class Ucb:
 
     def learn(self, arm, reward):
         self.n_slected[arm] += 1
-        self.rewards[arm] += reward        
+        self.rewards[arm] += reward  
+
+    def reset(self):
+        self.warmup_arm = 0
+        self.time_step = 0
+        self.rewards = np.zeros(shape=(self.n_arms,))
+        self.n_slected = np.zeros(shape=(self.n_arms,))       

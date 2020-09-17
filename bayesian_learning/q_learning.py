@@ -7,9 +7,7 @@ class EpsilonGreedySampling:
     def __init__(self, n_arms, epsilon=0.15):
         self.n_arms = n_arms
         self.epsilon = epsilon
-        self.time_step = 0
-        self.rewards = np.zeros(shape=(n_arms,))
-        self.n_slected = np.zeros(shape=(n_arms,))
+        self.reset()
 
     def select_arm(self):
         if np.random.random_sample() < self.epsilon:
@@ -27,3 +25,8 @@ class EpsilonGreedySampling:
     def learn(self, arm, reward):
         self.n_slected[arm] += 1
         self.rewards[arm] += reward
+
+    def reset(self):
+        self.time_step = 0
+        self.rewards = np.zeros(shape=(self.n_arms,))
+        self.n_slected = np.zeros(shape=(self.n_arms,))
