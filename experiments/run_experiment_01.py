@@ -25,9 +25,9 @@ uninformed_priors = np.array([[1.0, 1.0],
                              [1.0, 1.0],
                              [1.0, 1.0]])
 
-informed_priors = np.array([[5.0, 5.0],  # easy
-                           [2.0, 8.0],   # medium
-                           [1.0, 10.0]]) # hard
+informed_priors = np.array([[5.0, 5.0],  # medium
+                           [2.0, 8.0],   # hard
+                           [1.0, 10.0]]) # easy
 
 # Players
 players = []
